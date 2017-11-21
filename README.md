@@ -10,7 +10,7 @@ Use this script at your own risk! The following functions are available:
 
 Fetches historical data from https://coinmarketcap.com/
 
-```
+```python
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
 # Import Bitcoin historical data
@@ -23,7 +23,7 @@ print(df_btc)
 
 Get all symbols:
 
-```
+```python
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
 fetcher = CoinMarketCapFetcher()
@@ -32,7 +32,7 @@ print(fetcher.get_symbols())
 
 Or get all symbol names:
 
-```
+```python
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
 fetcher = CoinMarketCapFetcher()
@@ -43,7 +43,7 @@ print(fetcher.get_names())
 
 Fetch by symbol:
 
-```
+```python
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
 # Import Bitcoin historical data
@@ -54,7 +54,7 @@ print(df_btc)
 
 Fetch by name:
 
-```
+```python
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
 # Import Bitcoin historical data
@@ -67,7 +67,7 @@ print(df_btc)
 
 You can even specify a start and end time:
 
-```
+```python
 import datetime
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
@@ -81,7 +81,7 @@ print(df_btc)
 
 All data is cached by default (on disk and in-memory). You can force to rebuild this cache as follows:
 
-```
+```python
 import datetime
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
 
