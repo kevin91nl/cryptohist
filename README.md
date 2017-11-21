@@ -8,7 +8,7 @@ Use this script at your own risk! The following functions are available:
 
 ### CoinMarketCap fetcher
 
-Fetchers historical data from https://coinmarketcap.com/
+Fetches historical data from https://coinmarketcap.com/
 
 ```
 from cryptohist.coinmarketcap import CoinMarketCapFetcher
