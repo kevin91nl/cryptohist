@@ -92,27 +92,32 @@ class CoinMarketCapFetcher(Downloader):
         table = soup.find('table', {'class': 'table'})
 
         columns = []
-        for thead in table.findAll('thead'):
-            for row in thead.findAll('tr'):
-                for cell in row.findAll('th'):
-                    columns.append(cell.text.strip())
+        if table is not None:
+            for thead in table.findAll('thead'):
+                for row in thead.findAll('tr'):
+                    for cell in row.findAll('th'):
+                        columns.append(cell.text.strip())
 
         data = []
-        for tbody in table.findAll('tbody'):
-            for row in tbody.findAll('tr'):
-                row_values = []
-                for cell in row.findAll('td'):
-                    cell_value = cell.text.strip()
-                    cell_value = re.sub('\s+', ' ', cell_value)
-                    row_values.append(cell_value)
-                if len(row_values) == len(columns):
-                    keyvalues = {key: value for key, value in zip(columns, row_values)}
-                    data.append(keyvalues)
+        if table is not None:
+            for tbody in table.findAll('tbody'):
+                for row in tbody.findAll('tr'):
+                    row_values = []
+                    for cell in row.findAll('td'):
+                        cell_value = cell.text.strip()
+                        cell_value = re.sub('\s+', ' ', cell_value)
+                        row_values.append(cell_value)
+                    if len(row_values) == len(columns):
+                        keyvalues = {key: value for key, value in zip(columns, row_values)}
+                        data.append(keyvalues)
 
         # Clean data
-        df = pd.DataFrame(data)
-        df = df[['Date', 'Close', 'High', 'Low', 'Market Cap', 'Open', 'Volume']]
-        df['Date'] = pd.to_datetime(df['Date'])
+        if len(data) > 0:
+            df = pd.DataFrame(data)
+            df = df[['Date', 'Close', 'High', 'Low', 'Market Cap', 'Open', 'Volume']]
+            df['Date'] = pd.to_datetime(df['Date'])
+        else:
+            df = pd.DataFrame([], columns=['Date', 'Close', 'High', 'Low', 'Market Cap', 'Open', 'Volume'])
         df = df.set_index('Date')
         df = df.sort_index()
         for column in df.columns:

@@ -93,4 +93,4 @@ print(df_btc)
 
 ## Contributing
 
-Feel free to contribute! If you have any questions, you can send me an e-mail at mail@kevinjacobs.nl.
+Feel free to contribute! If you have any questions, you can send me a message on LinkedIn (https://www.linkedin.com/in/kevinjacobs1991/) or start a new issue.
